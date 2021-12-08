@@ -7,6 +7,7 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'app.dart';
+import 'models/spending.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
@@ -15,7 +16,9 @@ Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(AlarmAdapter());
+  Hive.registerAdapter(SpendingAdapter());
   await Hive.openBox<Alarm>('alarms');
+  await Hive.openBox<Spending>('expenses');
 
   const AndroidInitializationSettings initializationSettingsAndroid =
   AndroidInitializationSettings('app_icon');

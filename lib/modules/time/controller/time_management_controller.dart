@@ -74,29 +74,25 @@ class TimeManagementController extends GetxController {
     isItemClicked.value = !isItemClicked.value;
   }
 
-  onItemAlarmClicked(int index) {
-    Get.defaultDialog(
-        title: 'Chỉnh sửa',
-        content: const TextField(decoration: InputDecoration(
-          hintText: 'Nhập mốc thời gian mới',
-          border: OutlineInputBorder(),
-        ),),
-        confirm: const Text(
-          'OK',
-          style: TextStyle(color: Colors.blue, fontSize: 16.0),
-        ),
-        cancel: const Text(
-          'Huỷ',
-          style: TextStyle(color: Colors.grey, fontSize: 16.0),
-        ),
-        onCancel: () => Get.back(),
-        onConfirm: () {
-          updateAlarm(index);
-        });
+  onItemAlarmClicked(BuildContext context, int index) {
+    showTimePicker(
+      context: context,
+      initialTime: TimeOfDay(
+        hour: int.parse(alarmList[index].time.split(":")[0]),
+        minute: int.parse(alarmList[index].time.split(":")[1]),
+      ),
+      confirmText: 'OK',
+      cancelText: 'Huỷ',
+    ).then((value) {
+      alarm.value = Alarm(const Uuid().v1(),
+          value!.hour.toString() + ":" + value.minute.toString(), true);
+      updateAlarm(index);
+    }).onError((error, stackTrace) {
+      log("Updated Error");
+    });
   }
 
   updateAlarm(int index) {
-    alarm.value = alarmList[index];
     boxes.putAt(index, alarm.value);
     getListAlarm();
   }

@@ -73,10 +73,24 @@ class DrawerMenu extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(
+                Icons.bar_chart,
+                color: Colors.black,
+              ),
+              title: const Text('Thống kê',
+                  style: TextStyle(color: Colors.black, fontSize: 16.0)),
+              onTap: () {
+                Get.toNamed(Routes.HEALTH);
+              },
+            ),
+            const SizedBox(
+              height: 10.0,
+            ),
+            ListTile(
+              leading: const Icon(
                 Icons.info_outline,
                 color: Colors.black,
               ),
-              title: const Text('Thông tin',
+              title: const Text('Thông tin khác',
                   style: TextStyle(color: Colors.black, fontSize: 16.0)),
               onTap: () {
                 Get.toNamed(Routes.INFORMATION);

@@ -45,10 +45,10 @@ class TimeManagementPage extends StatelessWidget {
                         child: Center(
                           child: TextButton(
                             onPressed: () => controller.onTextEditClicked(),
-                            child: const Text(
-                              'Sửa',
+                            child: Text(
+                              controller.isItemClicked.value ? 'Huỷ' : 'Sửa',
                               style:
-                                  TextStyle(color: Colors.blue, fontSize: 16.0),
+                                  const TextStyle(color: Colors.blue, fontSize: 16.0),
                             ),
                           ),
                         ),

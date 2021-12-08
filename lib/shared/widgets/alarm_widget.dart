@@ -36,7 +36,7 @@ class AlarmWidget extends StatelessWidget {
                     },
                     value: controller.alarmList[index].isAlarm,
                   ),
-                  onTap: () => controller.onItemAlarmClicked(index),
+                  onTap: () => controller.onItemAlarmClicked(context, index),
                 ),);
               })
           : const Center(
